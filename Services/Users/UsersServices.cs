@@ -6,6 +6,11 @@ namespace MoviesApi.Services.Users;
 
 public class UsersServices(IUsersRepository usersRepository, IAuthServices authServices) : IUsersServices
 {
+    public async Task<List<Usuario>> GetAllUsers()
+    {
+        return await usersRepository.GetAllUsers();
+    }
+
     public async Task<Usuario?> GetUserByEmail(string email)
     {
         return await usersRepository.GetUserByEmail(email);

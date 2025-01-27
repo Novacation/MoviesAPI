@@ -5,6 +5,11 @@ namespace MoviesApi.Repositories.Users;
 
 public class UsersRepository(AppDbContext dbContext) : IUsersRepository
 {
+    public async Task<List<Usuario>> GetAllUsers()
+    {
+        return await dbContext.UsuariosEntities.ToListAsync();
+    }
+
     public async Task<Usuario?> GetUserByEmail(string email)
     {
         return await dbContext.UsuariosEntities.FirstOrDefaultAsync(u => u.Email == email);

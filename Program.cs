@@ -1,10 +1,12 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MoviesApi;
 using MoviesApi.Extensions.Endpoints.Auth;
 using MoviesApi.Extensions.Endpoints.Movies;
+using MoviesApi.Extensions.Endpoints.Users;
 using MoviesApi.Extensions.ServiceRegistration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,5 +61,7 @@ app.UseAuthorization();
 MapAuthEndpoints.Execute(app.MapGroup("/auth"));
 
 MapMoviesEndpoints.Execute(app.MapGroup("/movies"));
+
+MapUsersEndpoints.Execute(app.MapGroup("/users"));
 
 app.Run();

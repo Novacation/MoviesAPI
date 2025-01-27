@@ -4,6 +4,8 @@ namespace MoviesApi.Repositories.Users;
 
 public interface IUsersRepository
 {
+    Task<List<Usuario>> GetAllUsers();
+
     Task<Usuario?> GetUserByEmail(string email);
 
     Task<Usuario?> GetUserByCredentials(string email, string password);
