@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using MoviesApi.Dtos.Movies;
+using MoviesApi.InputModels.Movies;
 using MoviesApi.Services.Movies;
 
 namespace MoviesApi.Extensions.Endpoints.Movies;
@@ -8,11 +8,11 @@ public static class CreateMovieEndpoint
 {
     public static void MapEndpoint(RouteGroupBuilder app)
     {
-        app.MapPost("/create", [Authorize] async (CreateMovieDto movieDto, IMoviesServices moviesServices) =>
+        app.MapPost("/create", [Authorize] async (CreateMovieInputModel input, IMoviesServices moviesServices) =>
         {
-            await moviesServices.CreateMovie(movieDto);
+            await moviesServices.CreateMovie(input);
 
-            return Results.Created($"/name/{movieDto.Nome}", movieDto);
+            return Results.Created($"/name/{input.Nome}", input);
         });
     }
 }

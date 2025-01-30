@@ -1,10 +1,11 @@
-﻿using MoviesApi.Dtos.Movies;
-using MoviesApi.Entities;
+﻿using MoviesApi.InputModels.Movies;
+using MoviesApi.ViewModels.Movies;
 
 namespace MoviesApi.Services.Movies;
 
 public interface IMoviesServices
 {
-    Task CreateMovie(CreateMovieDto movie);
-    Task<Filme?> GetMovieById(int id);
+    Task CreateMovie(CreateMovieInputModel input);
+    Task<GetMovieByIdViewModel?> GetMovieById(int id);
+    Task UpdateMovie(UpdateMovieInputModel input);
 }

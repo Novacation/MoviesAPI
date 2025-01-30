@@ -9,11 +9,14 @@ public static class GetMovieByIdEndpoint
     {
         app.MapGet("/{id:int}", [Authorize] async (int id, IMoviesServices moviesServices) =>
         {
-            var movie = await moviesServices.GetMovieById(id);
+            var movieViewModel = await moviesServices.GetMovieById(id);
 
-            if (movie is null) return Results.NotFound();
+            if (movieViewModel is null)
+            {
+                return Results.NotFound();
+            }
 
-            return Results.Ok(movie);
+            return Results.Ok(movieViewModel);
         });
     }
 }
